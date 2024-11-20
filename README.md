@@ -18,7 +18,7 @@ sudo chown <username>:<username> /var/log/steam_price_scrapper.log
 
 Edit this line if geckodriver location if it's not in /snap/bin
 ```
-service.executable_path = '/snap/bin/firefox.geckodriver'
+service.executable_path = '<ff_location>/firefox.geckodriver'
 ```
 
 Run Script Like this:
