@@ -3,7 +3,7 @@ require 'logger'
 
 # Initiate Logger
 logger = Logger.new('/var/log/steam_price_scrapper.log', datetime_format: '%Y-%m-%d %H:%M:%S')
-logger.info("Steam Price Scrapping Script - Start")
+logger.info("Steam Price Scraping Script - Start")
 
 # Initiate Webdriver
 # when firefox is installed using snap then you must specify geckodriver path
@@ -33,8 +33,8 @@ end
 begin
 	explicit_wait.until { driver.current_url.include?('agecheck') }
 
-	logger.info("Steam Price Scrapping Script - Steam agecheck found")
-	logger.info("Steam Price Scrapping Script - Steam agecheck - start")
+	logger.info("Steam Price Scraping Script - Steam agecheck found")
+	logger.info("Steam Price Scraping Script - Steam agecheck - start")
 
 	# Select age
 	day_select = Selenium::WebDriver::Support::Select.new(driver['ageDay'])
@@ -47,26 +47,26 @@ begin
   # Click view page
 	driver['view_product_page_btn'].click()	
 
-	logger.info("Steam Price Scrapping Script - Steam agecheck - end")
+	logger.info("Steam Price Scraping Script - Steam agecheck - end")
 rescue Selenium::WebDriver::Error::TimeoutError
-	logger.info("Steam Price Scrapping Script - Steam agecheck not found. Skipping agecheck")
+	logger.info("Steam Price Scraping Script - Steam agecheck not found. Skipping agecheck")
 end
 
 # get price
 begin
   # get price element using xpath
 	game_price_xpath = '//div[contains(@class,"game_purchase_price") and @data-price-final]'
-  
+
 	explicit_wait.until { driver.find_element(:xpath, game_price_xpath) }
 
 	game_price = driver.find_element(:xpath, game_price_xpath)
-	logger.info("Steam Price Scrapping Script - Game price was found.")
-	logger.info("Steam Price Scrapping Script - Game title: #{driver.title.gsub('on Steam', '').strip}")
-	logger.info("Steam Price Scrapping Script - Game price: #{game_price.text}")
+	logger.info("Steam Price Scraping Script - Game price was found.")
+	logger.info("Steam Price Scraping Script - Game title: #{driver.title.gsub('on Steam', '').strip}")
+	logger.info("Steam Price Scraping Script - Game price: #{game_price.text}")
 rescue Selenium::WebDriver::Error::TimeoutError
-	logger.fatal("Steam Price Scrapping Script - Game price was not found. Quitting...")
+	logger.fatal("Steam Price Scraping Script - Game price was not found. Quitting...")
 end
 
 # Close browser
 driver.quit
-logger.info("Steam Price Scrapping Script - End")
+logger.info("Steam Price Scraping Script - End")
