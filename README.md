@@ -1,7 +1,14 @@
 # SteamPriceScrapper
 Ruby Script to fetch game prices from Steam Store
 
+# Tested On Ubuntu 22.04
+* ruby 3.0.2p107
+* selenium-web driver 4.26.0
+
 # Usage
+* install ruby
+* install selenium web-driver `gem install selenium-webdriver`
+  
 After downloading script, create log file
 
 ```
